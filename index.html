@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Neon Blocks - Classic Block Puzzle</title>
+
+    <meta name="description"
+          content="Neon Blocks is a classic block puzzle game with a modern neon style. Download it now on Google Play.">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #070b16;
+            color: #ffffff;
+            line-height: 1.6;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* NAVIGATION */
+        nav {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: rgba(7, 11, 22, 0.95);
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+            backdrop-filter: blur(12px);
+        }
+
+        .nav-container {
+            max-width: 1100px;
+            margin: auto;
+            padding: 18px 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 22px;
+            font-weight: 800;
+            letter-spacing: 1px;
+        }
+
+        .logo span {
+            color: #00eaff;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 28px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: #c8d0e0;
+            transition: 0.2s;
+        }
+
+        .nav-links a:hover {
+            color: #00eaff;
+        }
+
+        /* HERO */
+        .hero {
+            min-height: 680px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 80px 20px;
+            background:
+                radial-gradient(circle at 50% 20%, rgba(0,234,255,0.15), transparent 35%),
+                radial-gradient(circle at 20% 80%, rgba(155,0,255,0.12), transparent 30%);
+        }
+
+        .hero-content {
+            max-width: 850px;
+        }
+
+        .game-icon {
+            width: 120px;
+            height: 120px;
+            border-radius: 26px;
+            margin-bottom: 28px;
+            object-fit: cover;
+            box-shadow:
+                0 0 25px rgba(0,234,255,0.35),
+                0 0 60px rgba(155,0,255,0.15);
+        }
+
+        .hero h1 {
+            font-size: clamp(48px, 8vw, 88px);
+            line-height: 1;
+            margin-bottom: 25px;
+            font-weight: 900;
+            letter-spacing: -3px;
+        }
+
+        .hero h1 span {
+            color: #00eaff;
+            text-shadow: 0 0 25px rgba(0,234,255,0.5);
+        }
+
+        .hero p {
+            font-size: 21px;
+            color: #b9c2d5;
+            max-width: 680px;
+            margin: auto;
+        }
+
+        .buttons {
+            margin-top: 38px;
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .button {
+            padding: 15px 28px;
+            border-radius: 12px;
+            font-weight: 700;
+            transition: 0.25s;
+            display: inline-block;
+        }
+
+        .primary {
+            background: #00eaff;
+            color: #031018;
+            box-shadow: 0 0 25px rgba(0,234,255,0.25);
+        }
+
+        .primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 0 35px rgba(0,234,255,0.45);
+        }
+
+        .secondary {
+            border: 1px solid rgba(255,255,255,0.2);
+            color: #ffffff;
+        }
+
+        .secondary:hover {
+            border-color: #00eaff;
+            color: #00eaff;
+        }
+
+        /* SECTIONS */
+        section {
+            padding: 90px 20px;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: auto;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 40px;
+            margin-bottom: 15px;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: #9da7ba;
+            max-width: 650px;
+            margin: 0 auto 55px;
+        }
+
+        /* FEATURES */
+        .features {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 22px;
+        }
+
+        .feature {
+            padding: 32px;
+            background: #0d1324;
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 18px;
+            transition: 0.25s;
+        }
+
+        .feature:hover {
+            transform: translateY(-5px);
+            border-color: rgba(0,234,255,0.35);
+        }
+
+        .feature-icon {
+            font-size: 36px;
+            margin-bottom: 15px;
+        }
+
+        .feature h3 {
+            margin-bottom: 10px;
+            font-size: 21px;
+        }
+
+        .feature p {
+            color: #9da7ba;
+        }
+
+        /* ABOUT */
+        .about {
+            background: #0a0f1d;
+        }
+
+        .about-content {
+            max-width: 800px;
+            margin: auto;
+            text-align: center;
+        }
+
+        .about-content p {
+            color: #b5bfd1;
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
+
+        /* DOWNLOAD */
+        .download {
+            text-align: center;
+            background:
+                radial-gradient(circle at center, rgba(0,234,255,0.08), transparent 45%);
+        }
+
+        .download-box {
+            max-width: 750px;
+            margin: auto;
+            padding: 55px 30px;
+            background: #0d1324;
+            border: 1px solid rgba(0,234,255,0.15);
+            border-radius: 24px;
+        }
+
+        .download-box h2 {
+            font-size: 38px;
+            margin-bottom: 15px;
+        }
+
+        .download-box p {
+            color: #aeb8ca;
+            margin-bottom: 30px;
+        }
+
+        /* FOOTER */
+        footer {
+            border-top: 1px solid rgba(255,255,255,0.08);
+            padding: 35px 20px;
+            text-align: center;
+            color: #788398;
+            font-size: 14px;
+        }
+
+        footer a {
+            color: #00eaff;
+        }
+
+        /* MOBILE */
+        @media (max-width: 750px) {
+            .nav-container {
+                flex-direction: column;
+                gap: 12px;
+            }
+
+            .nav-links {
+                gap: 18px;
+                font-size: 14px;
+            }
+
+            .hero {
+                min-height: 600px;
+            }
+
+            .hero h1 {
+                letter-spacing: -2px;
+            }
+
+            .hero p {
+                font-size: 18px;
+            }
+
+            .features {
+                grid-template-columns: 1fr;
+            }
+
+            .section-title {
+                font-size: 32px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- NAVIGATION -->
+<nav>
+    <div class="nav-container">
+        <a href="#" class="logo">
+            NEON <span>BLOCKS</span>
+        </a>
+
+        <ul class="nav-links">
+            <li><a href="#features">Features</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#download">Download</a></li>
+        </ul>
+    </div>
+</nav>
+
+
+<!-- HERO -->
+<header class="hero">
+    <div class="hero-content">
+
+        <!-- Game icon -->
+        <img
+            class="game-icon"
+            src="https://play-lh.googleusercontent.com/"
+            alt="Neon Blocks game icon"
+            onerror="this.style.display='none';"
+        >
+
+        <h1>
+            NEON <span>BLOCKS</span>
+        </h1>
+
+        <p>
+            Classic block puzzle gameplay with a modern neon twist.
+            Place the blocks, clear the lines and beat your high score.
+        </p>
+
+        <div class="buttons">
+            <a
+                class="button primary"
+                href="https://play.google.com/store/apps/details?id=com.aistudio.blockblast.uxpkqz"
+                target="_blank"
+                rel="noopener"
+            >
+                ▶ Play on Google Play
+            </a>
+
+            <a class="button secondary" href="#features">
+                Explore Game
+            </a>
+        </div>
+
+    </div>
+</header>
+
+
+<!-- FEATURES -->
+<section id="features">
+    <div class="container">
+
+        <h2 class="section-title">Why Play Neon Blocks?</h2>
+
+        <p class="section-subtitle">
+            Easy to learn, satisfying to play and designed for quick
+            puzzle sessions whenever you have a few minutes.
+        </p>
+
+        <div class="features">
+
+            <div class="feature">
+                <div class="feature-icon">🧩</div>
+                <h3>Classic Puzzle</h3>
+                <p>
+                    Enjoy familiar block puzzle gameplay with simple
+                    controls and an easy-to-understand design.
+                </p>
+            </div>
+
+            <div class="feature">
+                <div class="feature-icon">⚡</div>
+                <h3>Neon Style</h3>
+                <p>
+                    A bright futuristic visual style gives the classic
+                    puzzle experience a fresh look.
+                </p>
+            </div>
+
+            <div class="feature">
+                <div class="feature-icon">🏆</div>
+                <h3>Beat Your Score</h3>
+                <p>
+                    Keep playing, improve your strategy and challenge
+                    yourself to reach a higher score.
+                </p>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+
+<!-- ABOUT -->
+<section id="about" class="about">
+    <div class="container">
+
+        <div class="about-content">
+
+            <h2 class="section-title">About Neon Blocks</h2>
+
+            <p>
+                Neon Blocks is a classic block puzzle game created
+                for players who enjoy simple, relaxing and challenging
+                gameplay.
+            </p>
+
+            <p>
+                Arrange blocks, complete lines and keep the board clear
+                for as long as possible.
+            </p>
+
+        </div>
+
+    </div>
+</section>
+
+
+<!-- DOWNLOAD -->
+<section id="download" class="download">
+    <div class="container">
+
+        <div class="download-box">
+
+            <h2>Ready to Play?</h2>
+
+            <p>
+                Download Neon Blocks from Google Play and start
+                building your highest score.
+            </p>
+
+            <a
+                class="button primary"
+                href="https://play.google.com/store/apps/details?id=com.aistudio.blockblast.uxpkqz"
+                target="_blank"
+                rel="noopener"
+            >
+                Get Neon Blocks
+            </a>
+
+        </div>
+
+    </div>
+</section>
+
+
+<!-- FOOTER -->
+<footer>
+    <p>
+        © 2026 Neon Blocks. All rights reserved.
+    </p>
+
+    <p>
+        <a
+            href="https://play.google.com/store/apps/details?id=com.aistudio.blockblast.uxpkqz"
+            target="_blank"
+            rel="noopener"
+        >
+            Google Play
+        </a>
+    </p>
+</footer>
+
+</body>
+</html>
