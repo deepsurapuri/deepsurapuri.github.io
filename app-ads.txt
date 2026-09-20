@@ -1,3 +1,2 @@
-google.com, pub-7769743075980618, DIRECT, f08c47fec0942fa0
-google.com, pub-7769743075980618, DIRECT, f08c47fec0942fa0
-<meta name="google-adsense-account" content="ca-pub-1669877257092479">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1669877257092479"
+     crossorigin="anonymous"></script>
